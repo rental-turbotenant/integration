@@ -1,0 +1,25 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  - package-ecosystem: "" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+let sessionId = null;
+initialize();
+
+
+async function initialize() {
+  const urlParams = new URLSearchParams(window.location.search);
+  sessionId = urlParams.get('session_id');
+  const accountId = localStorage.getItem('accountId');
+  const dashboardAnchor = document.getElementById('dashboard');
+  dashboardAnchor.href = `https://dashboard.stripe.com/${accountId}`;
+  const sessionIdInput = document.getElementById('session_id');
+  sessionIdInput.value = sessionId;
+
+}
